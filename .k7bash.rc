@@ -77,7 +77,8 @@ appin()
 alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
 alias vncser="vncserver -geometry 1600x1200 -localhost no"
 
-source ~/.k7git.sh
-alias vk7a="vim ~/.k7bash.rc"
+source ~/bootstrap/.k7git.sh
+alias vk7a="vim ~/bootstrap/.k7bash.rc"
+alias vk7g="vim ~/bootstrap/.k7git.sh"
 echo "Loaded k7 Bash"
 #tmux
