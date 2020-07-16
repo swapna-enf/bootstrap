@@ -1,0 +1,5 @@
+echo "Setting up K7's environment"
+echo "alias sal='source ~/bootstrap/.k7bash.rc'" >> ~/.bashrc
+echo "sal" >> ~/.bashrc
+
+mkdir ~/work
