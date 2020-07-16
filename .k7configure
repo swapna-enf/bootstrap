@@ -1,4 +1,6 @@
 echo "Setting up K7's environment"
+
+cp ~/.bashrc.orig ~/.bashrc
 echo "alias sal='source ~/bootstrap/.k7bash.rc'" >> ~/.bashrc
 
 mkdir ~/work
@@ -8,3 +10,6 @@ sudo apt-get install git vim mosh -y
 
 git config --global user.name "Kesavan K Mannar"
 git config --global user.name "Kesavankm.k7@gmail.com"
+
+cp ~/bootstrap/.vimrc ~/
+cp ~/.tmux.conf ~/
