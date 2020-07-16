@@ -1,0 +1,10 @@
+set nu
+set hlsearch
+set incsearch
+set ts=4
+set sw=4
+set mouse=a
+set paste
+set autoindent
+set expandtab
+set noswapfile

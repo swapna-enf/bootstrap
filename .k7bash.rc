@@ -1,0 +1,83 @@
+alias sal='source ~/.k7bash.rc'
+alias python=python3
+export PYTHONPATH=/vnfs/coding_prep/
+
+alias cds='cd /cds'
+
+# Wifi access point show with signal strength
+alias wifishow="nmcli -f in-use,ssid,bssid,signal,bars  dev wifi"
+
+# Mount cds
+mnt_cds()
+{
+    sudo mount -t nfs 192.168.1.42:/nfs/cds /cds
+}
+
+# Mount Action camera
+alias mnt_actcam="sudo mount /dev/sda1 /media/usb-actcam"
+alias umnt_actcam="sudo umount /media/usb-actcam"
+
+# Mount Action camera
+alias mnt_slr="sudo mount /dev/sda1 /media/usb-slr"
+alias umnt_slr="sudo umount /media/usb-slr"
+
+# Backup Action camera contents to Cloud
+alias bkp_actcam="rsync -avzh --progress --stats /media/usb-actcam/ root@192.168.1.121:/mnt/HD/HD_a2/action_cam"
+alias bkp_slr="rsync -avzh --progress --stats /media/usb-slr/ root@192.168.1.121:/nfs/cam_slr/auto_bkp"
+
+
+parse_git_dirty () {
+  [[ $(git status 2> /dev/null | tail -1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+
+parse_git_branch () {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
+
+show_git_prompt () {
+  git branch 2>/dev/null 1>&2 && echo -e "-( \e[34;1m$(parse_git_branch)\e[31;1m )"
+}
+
+if [[ -n $(type -t git) ]] ; then
+  GIT_BRANCH="\$(show_git_prompt)"
+else
+  GIT_BRANCH=
+fi
+
+PS1="
+\[\e[31;1m\]┌───[ \[\e[39;1m\]\u\[\e[31;1m\] :: \[\e[33;1m\]\h\[\e[31;1m\] ]-[ \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
+\[\e[31;1m\]└──=( \[\e[0m\]"
+
+
+# Docker commands
+dock()
+{
+    if [ $# -lt 1 ]; then
+        echo "script requires 1 arg <docker_name>"
+        return 1;
+    else
+        echo "docker exec -it $1 /bin/bash"
+        docker exec -it $1 /bin/bash
+    fi;
+}
+
+appin()
+{
+    if [ $# -lt 1 ]; then
+        echo "script requires 1 arg <app_name>"
+        echo "USAGE: appin docker"
+        return 1;
+    else
+        CMD="sudo apt-get install $1 $2"
+        echo $CMD
+        $CMD
+    fi;
+}
+
+alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
+alias vncser="vncserver -geometry 1600x1200 -localhost no"
+
+source ~/.k7git.sh
+alias vk7a="vim ~/.k7bash.rc"
+echo "Loaded k7 Bash"
+#tmux
