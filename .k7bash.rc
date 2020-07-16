@@ -1,4 +1,4 @@
-alias sal='source ~/.k7bash.rc'
+alias sal='source ~/bootstrap/.k7bash.rc'
 alias python=python3
 export PYTHONPATH=/vnfs/coding_prep/
 
