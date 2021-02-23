@@ -10,10 +10,10 @@ alias glg='git log'
 alias gla='git log --author '
 
 alias gco='git checkout '
-alias gcm='git checkout master'
+alias gcm='git checkout main'
 
 alias gpr='git pull --rebase '
-#alias gprom='git pull --rebase $K7_TRUE_ORIGIN master'
+#alias gprom='git pull --rebase $K7_TRUE_ORIGIN main'
 #alias gfo='git fetch $K7_TRUE_ORIGIN'
 
 setup_upstream () {
@@ -38,9 +38,9 @@ setup_upstream () {
 
 gprom () {
     if [ $# -lt 1 ]; then
-        CMD="git pull --rebase $K7_TRUE_ORIGIN master"
+        CMD="git pull --rebase $K7_TRUE_ORIGIN main"
     else
-        CMD="git pull --rebase $1 master"
+        CMD="git pull --rebase $1 main"
     fi;
     echo $CMD
     $CMD
