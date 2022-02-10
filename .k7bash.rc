@@ -36,7 +36,8 @@ parse_git_branch () {
 }
 
 show_git_prompt () {
-  git branch 2>/dev/null 1>&2 && echo -e "-( \e[34;1m$(parse_git_branch)\e[31;1m )"
+  #git branch 2>/dev/null 1>&2 && echo -e "-( \e[33;1m$(parse_git_branch)\e[31;1m )"
+  git branch 2>/dev/null 1>&2 && echo -e "-($(parse_git_branch))"
 }
 
 if [[ -n $(type -t git) ]] ; then
@@ -45,8 +46,11 @@ else
   GIT_BRANCH=
 fi
 
+#PS1="
+#\[\e[31;1m\]┌───[ \[\e[39;1m\]\u\[\e[31;1m\] :: \[\e[33;1m\]\h\[\e[31;1m\] ]-[ \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
+#\[\e[31;1m\]└──=( \[\e[0m\]"
 PS1="
-\[\e[31;1m\]┌───[ \[\e[39;1m\]\u\[\e[31;1m\] :: \[\e[33;1m\]\h\[\e[31;1m\] ]-[ \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
+\[\e[31;1m\]┌───[ \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
 \[\e[31;1m\]└──=( \[\e[0m\]"
 
 
@@ -78,10 +82,14 @@ appin()
 alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
 alias vncser="vncserver -geometry 1600x1200 -localhost no"
 
-source ~/bootstrap/.k7git.sh
-source ~/bootstrap/.k7k8s.sh
+alias mist="cd ~/work/source/mist/"
 alias vk7a="vim ~/bootstrap/.k7bash.rc"
 alias vk7g="vim ~/bootstrap/.k7git.sh"
 alias vk7k8s="vim ~/bootstrap/.k7k8s.sh"
+
+source ~/bootstrap/.k7git.sh
+source ~/bootstrap/.k7k8s.sh
+source ~/bootstrap/bash-complete-kafkaclient.inc
+
 echo "Loaded k7 Bash"
 #tmux
