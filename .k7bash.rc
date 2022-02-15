@@ -79,6 +79,28 @@ appin()
     fi;
 }
 
+export _DOCKER_REGISTRY=""
+set_docker_registry()
+{
+    if [ $# -lt 1 ]; then
+        echo "${FUNCNAME[0]} requires 1 arg docker.registry";
+        exit 1
+    else
+        export _DOCKER_REGISTRY=$1
+    fi
+}
+
+dkrdeply()
+{
+    if [ $# -lt 2 ]; then
+        echo "${FUNCNAME[0]} requires 2 args <tag> docker";
+    else
+        CMD="docker tag $2 ${_DOCKER_REGISTRY}/$2:$1 && docker push ${_DOCKER_REGISTRY}/$2:$1";
+        echo $CMD
+        docker tag $2 ${_DOCKER_REGISTRY}/$2:$1 && docker push ${_DOCKER_REGISTRY}/$2:$1
+    fi;
+}
+
 alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
 alias vncser="vncserver -geometry 1600x1200 -localhost no"
 

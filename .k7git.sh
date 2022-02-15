@@ -10,10 +10,10 @@ alias glg='git log'
 alias gla='git log --author '
 
 alias gco='git checkout '
-alias gcm='git checkout main'
+alias gcm='git checkout ${GITMAIN}'
 
 alias gpr='git pull --rebase '
-#alias gprom='git pull --rebase $K7_TRUE_ORIGIN main'
+#alias gprom='git pull --rebase $K7_TRUE_ORIGIN ${GITMAIN}'
 #alias gfo='git fetch $K7_TRUE_ORIGIN'
 
 setup_upstream () {
@@ -38,9 +38,9 @@ setup_upstream () {
 
 gprom () {
     if [ $# -lt 1 ]; then
-        CMD="git pull --rebase $K7_TRUE_ORIGIN main"
+        CMD="git pull --rebase $K7_TRUE_ORIGIN ${GITMAIN}"
     else
-        CMD="git pull --rebase $1 main"
+        CMD="git pull --rebase $1 ${GITMAIN}"
     fi;
     echo $CMD
     $CMD
@@ -76,4 +76,20 @@ gcopr () {
 		echo $CMD
 		$CMD
 	fi
+}
+
+dkrdeploy ()
+{
+    if [ $# -lt 2 ]; then
+        echo "${FUNCNAME[0]} requires 2 args <tag> <docker>";
+        return 1;
+    else
+		if [ -z $DKRREG ]; then
+			echo 'Set DKRREG docker registry'
+			return 1;
+		fi
+        CMD="docker tag $2 ${DKRREG}/$2:$1 && docker push ${DKRREG}/$2:$1";
+        echo $CMD;
+        docker tag $2 ${DKRREG}/$2:$1 && docker push ${DKRREG}/$2:$1;
+    fi
 }
