@@ -1,15 +1,36 @@
 echo "Loading k8s"
 
-alias k=kubectl
-kk() {
-    if [ -z "KUBECTLCMD" ]; then
-        _KUBECTLCMD=kubectl
+kk () {
+    if [ $# -lt 1 ]; then
+        echo "${FUNCNAME[0]} requires 1 arg <conf>"
+        return 1;
     else
-        _KUBECTLCMD=$KUBECTLCMD
-    fi
-    _CMD=$_KUBECTLCMD "${@:1}"
-    echo $_CMD
-    $_CMD
+        kubectl --kubeconfig=/home/kesavankm/.kube/${1}.conf "${@:2}";
+    fi;
+}
+
+getpods() {
+    if [ $# -lt 1 ]; then
+        echo "${FUNCNAME[0]} requires 1 arg <conf>"
+        return 1;
+    fi;
+    _TGT=${1}
+	export kAPI=`kk ${_TGT} get pods |grep api|awk '{print $1}'`
+	export kLOC=`kk ${_TGT} get pods |grep locus|awk '{print $1}'`
+	export kLENS=`kk ${_TGT} get pods |grep lens|awk '{print $1}'`
+	export kCampus=`kk ${_TGT} get pods |grep campus|awk '{print $1}'`
+}
+
+delpod() {
+    if [ $# -lt 2 ]; then
+        echo "${FUNCNAME[0]} requires 2 args <TGT_Cluster> <pod>"
+        return 1;
+    fi;
+    _TGT=${1}
+    _POD=${2}
+	_kPOD=`kk ${_TGT} get pods|grep ${_POD}|awk '{print $1}'`
+	kk ${_TGT} delete pod ${_kPOD}
+	getpods ${_TGT}
 }
 
 delpod() {
@@ -19,19 +40,37 @@ delpod() {
 }
 
 showlogs() {
-    _kPOD=`k get pods|grep ${1}|grep Runnin|awk '{print $1}'`
-    if [ -z $2 ]; then
-        k logs -f ${_kPOD}
-    else
-        k logs -f ${_kPOD} -c $2
-    fi
+    if [ $# -lt 2 ]; then
+        echo "${FUNCNAME[0]} requires 2 args <TGT_Cluster> <pod>"
+        return 1;
+    fi;
+    _TGT=${1}
+    _POD=${2}
+	_kPOD=`kk ${_TGT} get pods|grep ${_POD}|awk '{print $1}'`
+
+	if [ -z ${3} ]; then
+		kk ${_TGT} logs -f ${_kPOD}
+	else
+        _CONT=${3}
+		kk ${_TGT} logs -f ${_kPOD} -c ${_CONT}
+	fi
 }
 
 kshell() {
-    _kPOD=`k get pods|grep ${1}|grep Runnin|awk '{print $1}'`
-    if [ -z $2 ]; then
-        k exec -it ${_kPOD} -- /bin/sh
-    else
-        k exec -it ${_kPOD} -c $2 -- /bin/sh
+    if [ $# -lt 2 ]; then
+        echo "${FUNCNAME[0]} requires 2 args <TGT_Cluster> <pod> [container]"
+        return 1;
+    fi;
+    if [ -z $KSH ]; then
+        KSH=/bin/sh
     fi
+    _TGT=${1}
+    _POD=${2}
+	_kPOD=`kk ${_TGT} get pods|grep ${_POD}|awk '{print $1}'`
+	if [ -z $3 ]; then
+		kk ${_TGT} exec -it ${_kPOD} -- ${KSH}
+	else
+        _CONT=${3}
+		kk ${_TGT} exec -it ${_kPOD} -c ${_CONT} -- ${KSH}
+	fi
 }
