@@ -1,5 +1,5 @@
 alias python=python3
-export K7BASHPATH=/home/kmannar/bootstrap/linux-bash/
+export K7BASHPATH=~/bootstrap/linux-bash/
 alias sal='source ${K7BASHPATH}/.k7bash.rc'
 export PYTHONPATH=/vnfs/coding_prep/
 export PATH="$PATH:/usr/local/go/bin"
