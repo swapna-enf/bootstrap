@@ -1,5 +1,6 @@
-alias sal='source ~/bootstrap/.k7bash.rc'
 alias python=python3
+export K7BASHPATH=/home/kmannar/bootstrap/linux-bash/
+alias sal='source ${K7BASHPATH}/.k7bash.rc'
 export PYTHONPATH=/vnfs/coding_prep/
 export PATH="$PATH:/usr/local/go/bin"
 #export PATH="$PATH:/usr/local/go/bin:$(go env GOPATH)/bin"
@@ -108,14 +109,14 @@ alias k=kubectl
 alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
 alias vncser="vncserver -geometry 1600x1200 -localhost no"
 
-source ~/bootstrap/.k7git.sh
-source ~/bootstrap/.k7k8s.sh
-source ~/bootstrap/.k7work.sh
-alias vk7a="vim ~/bootstrap/.k7bash.rc"
-alias vk7g="vim ~/bootstrap/.k7git.sh"
-alias vk7k8s="vim ~/bootstrap/.k7k8s.sh"
+source ${K7BASHPATH}/.k7git.sh
+source ${K7BASHPATH}/.k7k8s.sh
+source ${K7BASHPATH}/.k7work.sh
+alias vk7a="vim ${K7BASHPATH}/.k7bash.rc"
+alias vk7g="vim ${K7BASHPATH}/.k7git.sh"
+alias vk7k8s="vim ${K7BASHPATH}/.k7k8s.sh"
 
-source ~/bootstrap/bash-complete-kafkaclient.inc
+source ${K7BASHPATH}/bash-complete-kafkaclient.inc
 
 echo "Loaded k7 Bash"
 #tmux
