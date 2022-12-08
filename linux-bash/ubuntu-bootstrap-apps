@@ -1,4 +1,4 @@
-sudo apt install git tmux wget curl gccgo-5 make
+sudo apt install git tmux wget curl gccgo-5 make vim -y
 
 #########################################
 # Download Go
