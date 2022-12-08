@@ -41,7 +41,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 # HELM
 wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
 tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
-mv linux-amd64/helm /usr/local/bin/helm
+sudo mv linux-amd64/helm /usr/local/bin/helm
 
 # KIND
 go install sigs.k8s.io/kind@v0.17.0
