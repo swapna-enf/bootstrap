@@ -1,1 +1,4 @@
 cp ~/.bashrc ~/.bashrc.orig
+echo "source ~/bootstrap/linux-bash/.k7bash.rc" >> ~/.bashrc
+
+source ~/.bashrc
