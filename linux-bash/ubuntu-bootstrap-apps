@@ -1,0 +1,22 @@
+sudo apt install git tmux wget curl gccgo-5 make
+
+#########################################
+# Download Go
+
+GOVER=1.19.1 # Use required version 
+wget https://dl.google.com/go/go${GOVER}.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go${GOVER}.linux-amd64.tar.gz
+rm go${GOVER}.linux-amd64.tar.gz
+
+# Set Go PATH Variable
+# Run the commands below to set your set $GOPATH
+
+mkdir -p ~/go/{bin,pkg,src}
+echo 'export GOPATH="$HOME/go"' >> ~/.bashrc
+echo 'export PATH="$PATH:${GOPATH//://bin:}/bin"' >> ~/.bashrc
+
+# Test
+go version
+
+#########################################
+
