@@ -54,7 +54,7 @@ fi
 #\[\e[31;1m\]└──=( \[\e[0m\]"
 
 PS1="
-\[\e[31;1m\]┌───[ \[\e[33;1m\]\h\[\e[31;1m\] :: \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
+\[\e[31;1m\]┌───[ \[\e[33;1m\]\u-\h\[\e[31;1m\] :: \[\e[39;1m\]\w\[\e[31;1m\] ]$GIT_BRANCH
 \[\e[31;1m\]└──=( \[\e[0m\]"
 
 
@@ -119,5 +119,6 @@ alias vk7k8s="vim ${K7BASHPATH}/.k7k8s.sh"
 source ${K7BASHPATH}/bash-complete-kafkaclient.inc
 source ${K7BASHPATH}/bash-completion-kind.sh
 
+HISTTIMEFORMAT="%F %T "
 echo "Loaded k7 Bash"
 #tmux
