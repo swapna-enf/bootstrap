@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tiefighter
+  labels:
+    class: tiefighter
+    #org: empire
+    org: pirate
+    app.kubernetes.io/name: tiefighter
+spec:
+  containers:
+  - name: spaceship
+    image: docker.io/tgraf/netperf

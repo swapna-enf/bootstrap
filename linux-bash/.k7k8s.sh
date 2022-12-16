@@ -1,5 +1,7 @@
 echo "Loading k8s"
 
+alias ks="k -n kube-system"
+
 kk () {
     if [ $# -lt 1 ]; then
         echo "${FUNCNAME[0]} requires 1 arg <conf>"
