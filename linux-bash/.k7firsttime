@@ -1,4 +1,15 @@
+touch ~/.bashrc
 cp ~/.bashrc ~/.bashrc.orig
 echo "source ~/bootstrap/linux-bash/.k7bash.rc" >> ~/.bashrc
+
+touch ~/.tmux.conf
+cp ~/.tmux.conf ~/.tmux.conf.orig
+rm ~/.tmux.conf
+ln -s ~/bootstrap/linux-bash/.tmux.a.conf ~/.tmux.conf
+
+touch ~/.vimrc
+cp ~/.vimrc ~/.vimrc.orig
+rm ~/.vimrc
+ln -s ~/bootstrap/linux-bash/.vimrc ~/.vimrc
 
 source ~/.bashrc
