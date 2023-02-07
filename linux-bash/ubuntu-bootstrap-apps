@@ -15,6 +15,8 @@ mkdir -p ~/go/{bin,pkg,src}
 echo 'export GOPATH="$HOME/go"' >> ~/.bashrc
 echo 'export PATH="$PATH:${GOPATH//://bin:}/bin"' >> ~/.bashrc
 
+source ~/.bashrc
+
 # Test
 go version
 
