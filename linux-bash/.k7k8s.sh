@@ -7,7 +7,7 @@ kk () {
         echo "${FUNCNAME[0]} requires 1 arg <conf>"
         return 1;
     else
-        kubectl --kubeconfig=/home/kesavankm/.kube/${1}.conf "${@:2}";
+        kubectl --kubeconfig=/home/kesavankm/.kube/${1} "${@:2}";
     fi;
 }
 
