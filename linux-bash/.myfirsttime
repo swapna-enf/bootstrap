@@ -1,6 +1,6 @@
 touch ~/.bashrc
 cp ~/.bashrc ~/.bashrc.orig
-echo "source ~/bootstrap/linux-bash/.k7bash.rc" >> ~/.bashrc
+echo "source ~/bootstrap/linux-bash/.mybash.rc" >> ~/.bashrc
 
 touch ~/.tmux.conf
 cp ~/.tmux.conf ~/.tmux.conf.orig

@@ -1,6 +1,6 @@
 alias python=python3
-export K7BASHPATH=~/bootstrap/linux-bash/
-alias sal='source ${K7BASHPATH}/.k7bash.rc'
+export _MYBASHPATH=~/bootstrap/linux-bash/
+alias sal='source ${_MYBASHPATH}/.mybash.rc'
 export PYTHONPATH=/vnfs/coding_prep/
 export PATH="$PATH:/usr/local/go/bin"
 #export PATH="$PATH:/usr/local/go/bin:$(go env GOPATH)/bin"
@@ -109,16 +109,16 @@ alias k=kubectl
 alias csc="find . -path .git -prune -o -name "*.[ch]" -print > cscope.files;cscope -b -q -k"
 alias vncser="vncserver -geometry 1600x1200 -localhost no"
 
-source ${K7BASHPATH}/.k7git.sh
-source ${K7BASHPATH}/.k7k8s.sh
-source ${K7BASHPATH}/.k7work.sh
-alias vk7a="vim ${K7BASHPATH}/.k7bash.rc"
-alias vk7g="vim ${K7BASHPATH}/.k7git.sh"
-alias vk7k8s="vim ${K7BASHPATH}/.k7k8s.sh"
+source ${_MYBASHPATH}/.mygit.sh
+source ${_MYBASHPATH}/.myk8s.sh
+source ${_MYBASHPATH}/.mywork.sh
+alias vmya="vim ${_MYBASHPATH}/.mybash.rc"
+alias vmyg="vim ${_MYBASHPATH}/.mygit.sh"
+alias vmyk8s="vim ${_MYBASHPATH}/.myk8s.sh"
 
-source ${K7BASHPATH}/bash-complete-kafkaclient.inc
-source ${K7BASHPATH}/bash-completion-kind.sh
+source ${_MYBASHPATH}/bash-complete-kafkaclient.inc
+source ${_MYBASHPATH}/bash-completion-kind.sh
 
 HISTTIMEFORMAT="%F %T "
-echo "Loaded k7 Bash"
+echo "Loaded my Bash"
 #tmux

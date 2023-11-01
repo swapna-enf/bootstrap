@@ -1,8 +1,8 @@
 #Git related aliases
 
-export K7_TRUE_ORIGIN=origin
+export _MY_TRUE_ORIGIN=origin
 export GIT_EDITOR=vim
-#export K7_TRUE_ORIGIN=upstream
+#export _MY_TRUE_ORIGIN=upstream
 alias gst='git status'
 alias gbr='git branch'
 
@@ -13,8 +13,8 @@ alias gco='git checkout '
 alias gcm='git checkout ${GITMAIN}'
 
 alias gpr='git pull --rebase '
-#alias gprom='git pull --rebase $K7_TRUE_ORIGIN ${GITMAIN}'
-#alias gfo='git fetch $K7_TRUE_ORIGIN'
+#alias gprom='git pull --rebase $_MY_TRUE_ORIGIN ${GITMAIN}'
+#alias gfo='git fetch $_MY_TRUE_ORIGIN'
 
 setup_upstream () {
     echo "=============="
@@ -38,7 +38,7 @@ setup_upstream () {
 
 gprom () {
     if [ $# -lt 1 ]; then
-        CMD="git pull --rebase $K7_TRUE_ORIGIN ${GITMAIN}"
+        CMD="git pull --rebase $_MY_TRUE_ORIGIN ${GITMAIN}"
     else
         CMD="git pull --rebase $1 ${GITMAIN}"
     fi;
@@ -48,7 +48,7 @@ gprom () {
 
 gfo () {
     if [ $# -lt 1 ]; then
-        CMD="git fetch $K7_TRUE_ORIGIN"
+        CMD="git fetch $_MY_TRUE_ORIGIN"
     else
         CMD="git fetch $1"
     fi;

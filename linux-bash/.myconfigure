@@ -1,7 +1,7 @@
-echo "Setting up K7's environment"
+echo "Setting up _MY's environment"
 
 cp ~/.bashrc.orig ~/.bashrc
-echo "alias sal='source ~/bootstrap/.k7bash.rc'" >> ~/.bashrc
+echo "alias sal='source ~/bootstrap/.mybash.rc'" >> ~/.bashrc
 
 mkdir ~/work
 
@@ -9,7 +9,7 @@ sudo apt-get update
 sudo apt-get install git vim mosh -y
 
 git config --global user.name "Kesavan K Mannar"
-git config --global user.name "Kesavankm.k7@gmail.com"
+git config --global user.name "Kesavankm.my@gmail.com"
 
 cp ~/bootstrap/.vimrc ~/
 cp ~/.tmux.conf ~/
