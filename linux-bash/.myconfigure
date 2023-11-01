@@ -1,0 +1,12 @@
+echo "Setting up MY's environment"
+
+cp ~/.bashrc.orig ~/.bashrc
+echo "alias sal='source ~/bootstrap/.mybash.rc'" >> ~/.bashrc
+
+mkdir ~/work
+
+sudo apt-get update
+sudo apt-get install git vim mosh -y
+
+cp ~/bootstrap/.vimrc ~/
+cp ~/.tmux.conf ~/
